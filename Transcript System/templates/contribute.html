@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textbook Exchange System</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+      }
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      .container {
+        margin: auto;
+        width: 50%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      .container p {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 20px;
+      }
+
+      label {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+        margin-right: 20px;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        width: 50%;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      input[type="file"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        width: 50%;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    <script>
+      function submitForm() {
+        // 获取输入框和上传文件的值
+        var bookTitle = document.getElementById("bookTitle").value;
+        var tokenPrice = document.getElementById("tokenPrice").value;
+        var file = document.getElementById("fileInput").files[0];
+
+        // TODO: 将表单数据和上传的文件发送到后端处理
+
+        // 跳转到receipt.html
+        window.location.href = "receipt.html";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Textbook Exchange System</h1>
+    <div class="container">
+      <button class="back" onclick="location.href=`home`">Back</button>
+      <!-- <button class = "back"  >Back</button>  -->
+      <!-- <button onclick="window.location.href='home.html'">Back</button> -->
+      <p>Let's contribute your textbooks!</p>
+      <!-- <form onsubmit="submitForm()"> -->
+      <!-- <form action="/submit" method="POST" onsubmit="submitForm()">
+			<label for="bookTitle">Book Title:</label>
+			<input type="text" id="bookTitle"><br>
+			<label for="tokenPrice">Token Price:</label>
+			<input type="text" id="tokenPrice"><br>
+			<label for="fileInput">Upload:</label>
+			<input type="file" id="fileInput"><br>
+			<input type="submit" value="Submit">
+		</form> -->
+
+      <form
+        action="/submit"
+        method="POST"
+        enctype="multipart/form-data"
+        onsubmit="submitForm()"
+      >
+        <label for="bookTitle">Book Title:</label>
+        <input type="text" id="bookTitle" name="bookTitle" /><br />
+        <label for="tokenPrice">Token Price:</label>
+        <input type="text" id="tokenPrice" name="tokenPrice" /><br />
+        <label for="fileInput">Upload:</label>
+        <input type="file" id="fileInput" name="fileInput" /><br />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

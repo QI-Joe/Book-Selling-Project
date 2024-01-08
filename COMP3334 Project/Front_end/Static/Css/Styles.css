@@ -1,0 +1,14 @@
+/* Add your custom styles here */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+}
+
+input,
+select {
+    margin-bottom: 1rem;
+}

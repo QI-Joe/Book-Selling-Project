@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Submission Successful</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      .receipt {
+        margin: 30px auto;
+        width: 60%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .receipt ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+      .receipt li {
+        margin-bottom: 10px;
+      }
+      .back {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        width: 10%; /* 将按钮的宽度设置为50% */
+        background-color: #4caf50; /* 将背景色更改为红色 */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+      }
+      .back:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Congratulations! Your submission is successful!</h1>
+    <button class="back" onclick="location.href=`home`">Back</button>
+    <!-- <a href="/home" class="back-btn">Back</a> -->
+    <div class="receipt">
+      <h2>Receipt</h2>
+      <ul>
+        <li>Book Title: {{ book_title }}</li>
+        <li>Token Price: {{ token_price }}</li>
+        <li>Book Hash: {{ book_hash }}</li>
+      </ul>
+    </div>
+  </body>
+</html>

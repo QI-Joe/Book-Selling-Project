@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="post" action="/register">
+        <label for="student_id">Student ID:</label>
+        <input type="text" name="student_id" id="student_id" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Register">
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+</body>
+</html>

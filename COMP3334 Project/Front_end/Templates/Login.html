@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="post" action="/login">
+        <label for="account_type">Account Type:</label>
+        <select name="account_type" id="account_type">
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+        </select><br>
+        <label for="user_id">User ID:</label>
+        <input type="text" name="user_id" id="user_id" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <p>New user? <a href="register.html">Register</a></p>
+</body>
+</html>

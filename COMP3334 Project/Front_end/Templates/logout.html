@@ -1,0 +1,23 @@
+<button id="logout-btn">Logout</button>
+const logoutBtn = document.querySelector('#logout-btn');
+logoutBtn.addEventListener('click', async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch('logout.html', {
+      method: 'POST',
+      credentials: 'same-origin',
+    });
+
+    if (response.ok) {
+
+      localStorage.removeItem('authToken');
+
+
+      window.location.href = 'login.html';
+    } else {
+      throw new Error('Logout failed');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});

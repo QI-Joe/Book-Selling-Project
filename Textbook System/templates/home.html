@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textbook Exchange System</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f2f2f2;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .logout {
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        background-color: #f44336;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .logout:hover {
+        background-color: #d32f2f;
+      }
+
+      .book-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        width: 66.6%;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        padding: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+
+      td button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      td button:hover {
+        background-color: #3e8e41;
+      }
+
+      .account-info {
+        margin-top: 30px;
+        width: 66.6%;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .account-info h2 {
+        margin-top: 0;
+        margin-bottom: 16px;
+        color: #333;
+      }
+
+      .account-info p {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .account-info ul {
+        margin-top: 8px;
+        margin-bottom: 16px;
+        padding-left: 16px;
+        color: #333;
+      }
+
+      .account-info button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .account-info button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    <script>
+      function buyBook(title, cid) {
+        if (confirm("Are you sure you want to buy " + title + "?")) {
+          // TODO: Handle buy logic
+
+          // Trigger download
+          window.open('{{ url_for("download") }}?cid=' + cid, "_blank");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Textbook Exchange System</h1>
+
+    <button class="logout" onclick="location.href=`{{ url_for('login') }}`">
+      Logout
+    </button>
+    <!-- url_for()括号中的是app.py中定义的路由函数名!! -->
+
+    <div class="book-list">
+      <h2>Available Books</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Book Title</th>
+            <th>Contributor</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td>{{ book['title'] }}</td>
+            <td>{{ book['contributor'] }}</td>
+            <td>{{ book['price'] }}</td>
+            <td>
+              <button
+                onclick="buyBook(`{{ book['title'] }}`, '{{ book.cid }}')"
+              >
+                Buy
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="account-info">
+      <h2>Account Information</h2>
+      <p>Account ID: {{ account_id }}</p>
+      <p>User Name: {{ user_name }}</p>
+      <p>Token Number: {{ token_number }}</p>
+      <p>List of Purchased Books:</p>
+      <ul>
+        {% for book_name in purchased_books %}
+        <li>{{ book_name }}</li>
+        {% endfor %}
+      </ul>
+      <p>List of Contributed Books:</p>
+      <ul>
+        {% for book_name in contributed_books %}
+        <li>{{ book_name }}</li>
+        {% endfor %}
+      </ul>
+
+      <button
+        class="make_contribute"
+        onclick="location.href=`{{ url_for('contribute') }}`"
+      >
+        Make a Contribution
+      </button>
+    </div>
+  </body>
+</html>

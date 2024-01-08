@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Submission Successful</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      .receipt {
+        margin: 30px auto;
+        width: 60%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .receipt ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+      .receipt li {
+        margin-bottom: 10px;
+      }
+      .back {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        width: 10%;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+      }
+      .back:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    <script>
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      const bookTitle = getQueryParam("book_title");
+      const tokenPrice = getQueryParam("token_price");
+      const fileHash = getQueryParam("book_hash");
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("bookTitle").innerText = "{{ book_title }}";
+        document.getElementById("tokenPrice").innerText = "{{ token_price }}";
+        document.getElementById("fileHash").innerText = "{{ book_hash }}";
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Congratulations! Your submission is successful!</h1>
+    <button class="back" onclick="location.href=`{{ url_for('home') }}`">
+      Back
+    </button>
+    <div class="receipt">
+      <h2>Receipt</h2>
+      <ul>
+        <li>Book Title: <span id="bookTitle"></span></li>
+        <li>Token Price: <span id="tokenPrice"></span></li>
+        <!-- <li>Book Hash: <span id="fileHash"></span></li> -->
+      </ul>
+    </div>
+  </body>
+</html>
